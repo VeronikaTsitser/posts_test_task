@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:posts_tets_task/features/topics/domain/models/photo_model.dart';
-import 'package:posts_tets_task/features/topics/domain/models/post_model.dart';
-import 'package:posts_tets_task/features/topics/domain/posts_repository.dart';
+import 'package:posts_tets_task/features/posts/domain/models/photo_model.dart';
+import 'package:posts_tets_task/features/posts/domain/models/post_model.dart';
+import 'package:posts_tets_task/features/posts/domain/posts_repository.dart';
 
 part 'posts_event.dart';
 part 'posts_state.dart';

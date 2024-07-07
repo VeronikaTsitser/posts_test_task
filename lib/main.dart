@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:posts_tets_task/features/topics/data/posts_repository_impl.dart';
-import 'package:posts_tets_task/features/topics/domain/posts_repository.dart';
-import 'package:posts_tets_task/features/topics/logic/comments_bloc/comments_bloc.dart';
-import 'package:posts_tets_task/features/topics/logic/post_bloc/posts_bloc.dart';
-import 'package:posts_tets_task/features/topics/presentation/post_details_screen.dart';
-import 'package:posts_tets_task/features/topics/presentation/posts_list_screen.dart';
+import 'package:posts_tets_task/features/posts/data/posts_repository_impl.dart';
+import 'package:posts_tets_task/features/posts/domain/posts_repository.dart';
+import 'package:posts_tets_task/features/posts/logic/comments_bloc/comments_bloc.dart';
+import 'package:posts_tets_task/features/posts/logic/post_bloc/posts_bloc.dart';
+import 'package:posts_tets_task/features/posts/presentation/posts_list_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -29,9 +28,6 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         home: const PostsListScreen(),
-        routes: {
-          '/post_details': (context) => const PostDetailsScreen(),
-        },
       ),
     );
   }

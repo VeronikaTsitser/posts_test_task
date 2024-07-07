@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:posts_tets_task/features/topics/domain/models/comment_model.dart';
-import 'package:posts_tets_task/features/topics/domain/posts_repository.dart';
+import 'package:posts_tets_task/features/posts/domain/models/comment_model.dart';
+import 'package:posts_tets_task/features/posts/domain/posts_repository.dart';
 
 part 'comments_event.dart';
 part 'comments_state.dart';
