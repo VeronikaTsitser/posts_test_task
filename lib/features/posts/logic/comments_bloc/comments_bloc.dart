@@ -14,7 +14,7 @@ class CommentsBloc extends Bloc<CommentsEvent, CommentsState> {
     on<GetCommentsEvent>(onGetComments);
   }
 
-  FutureOr<void> onGetComments(GetCommentsEvent event, Emitter emit) async {
+  FutureOr<void> onGetComments(GetCommentsEvent event, Emitter<CommentsState> emit) async {
     emit(CommentsLoading());
 
     try {

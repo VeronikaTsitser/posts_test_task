@@ -9,6 +9,7 @@ import 'package:posts_tets_task/features/posts/domain/posts_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PostsRepositoryImpl implements PostsRepository {
+  const PostsRepositoryImpl();
   @override
   Future<List<CommentModel>> getComments(int postId) async {
     try {

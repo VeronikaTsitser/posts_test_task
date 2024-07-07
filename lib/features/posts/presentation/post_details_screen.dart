@@ -6,10 +6,21 @@ import 'package:posts_tets_task/features/posts/domain/models/post_model.dart';
 import 'package:posts_tets_task/features/posts/logic/comments_bloc/comments_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 
-class PostDetailsScreen extends StatelessWidget {
+class PostDetailsScreen extends StatefulWidget {
   const PostDetailsScreen({super.key, required this.post, required this.imageUrl});
   final PostModel post;
   final String imageUrl;
+
+  @override
+  State<PostDetailsScreen> createState() => _PostDetailsScreenState();
+}
+
+class _PostDetailsScreenState extends State<PostDetailsScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<CommentsBloc>().add(GetCommentsEvent(widget.post.id));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +35,9 @@ class PostDetailsScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     const SizedBox(height: 12),
-                    _ImageWidget(imageUrl: imageUrl, postTitle: post.title),
+                    _ImageWidget(imageUrl: widget.imageUrl, postTitle: widget.post.title),
                     const SizedBox(height: 20),
-                    Text(post.body),
+                    Text(widget.post.body),
                     const SizedBox(height: 20),
                     const _Comments(),
                   ],

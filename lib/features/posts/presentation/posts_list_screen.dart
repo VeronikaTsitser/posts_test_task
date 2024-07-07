@@ -1,12 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:octo_image/octo_image.dart';
 import 'package:posts_tets_task/features/posts/domain/models/post_model.dart';
-import 'package:posts_tets_task/features/posts/logic/comments_bloc/comments_bloc.dart';
 import 'package:posts_tets_task/features/posts/logic/post_bloc/posts_bloc.dart';
 import 'package:posts_tets_task/features/posts/presentation/post_details_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
 
 class PostsListScreen extends StatelessWidget {
@@ -15,13 +12,6 @@ class PostsListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          final pref = await SharedPreferences.getInstance();
-          pref.clear();
-        },
-        child: const Icon(Icons.refresh),
-      ),
       appBar: AppBar(title: const Text('Posts List')),
       body: SafeArea(
         child: BlocBuilder<PostsBloc, PostsState>(
@@ -111,14 +101,11 @@ class TopicsListCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 6),
       child: ListTile(
-        onTap: () {
-          context.read<CommentsBloc>().add(GetCommentsEvent(post.id));
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => PostDetailsScreen(post: post, imageUrl: imageURL),
-            ),
-          );
-        },
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => PostDetailsScreen(post: post, imageUrl: imageURL),
+          ),
+        ),
         contentPadding: const EdgeInsets.all(12),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         tileColor: Colors.grey.shade200,
@@ -131,15 +118,11 @@ class TopicsListCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
           child: SizedBox.square(
             dimension: 60,
-            child: OctoImage(
-              image: CachedNetworkImageProvider(imageURL),
+            child: CachedNetworkImage(
+              imageUrl: imageURL,
               fit: BoxFit.cover,
               fadeInCurve: Curves.easeInOut,
               fadeInDuration: const Duration(milliseconds: 500),
-              placeholderBuilder: (context) => const ColoredBox(
-                color: Colors.white,
-                child: SizedBox.square(dimension: 60),
-              ),
             ),
           ),
         ),

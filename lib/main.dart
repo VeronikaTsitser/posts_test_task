@@ -5,7 +5,6 @@ import 'package:posts_tets_task/features/posts/domain/posts_repository.dart';
 import 'package:posts_tets_task/features/posts/logic/comments_bloc/comments_bloc.dart';
 import 'package:posts_tets_task/features/posts/logic/post_bloc/posts_bloc.dart';
 import 'package:posts_tets_task/features/posts/presentation/posts_list_screen.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,9 +14,9 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
+    return MultiBlocProvider(
       providers: [
-        RepositoryProvider<PostsRepository>(create: (context) => PostsRepositoryImpl()),
+        RepositoryProvider<PostsRepository>(create: (context) => const PostsRepositoryImpl()),
         BlocProvider(create: (context) => PostsBloc(context.read<PostsRepository>())..add(GetPostsEvent())),
         BlocProvider(create: (context) => CommentsBloc(context.read<PostsRepository>())),
       ],

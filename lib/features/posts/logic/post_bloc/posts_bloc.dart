@@ -15,7 +15,7 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
     on<GetPostsEvent>(onGetPostsEvent);
   }
 
-  FutureOr<void> onGetPostsEvent(GetPostsEvent event, Emitter emit) async {
+  FutureOr<void> onGetPostsEvent(GetPostsEvent event, Emitter<PostsState> emit) async {
     emit(PostsLoadingState());
     try {
       final posts = await _postsRepository.getPosts();
